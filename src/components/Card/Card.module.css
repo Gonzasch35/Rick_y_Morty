@@ -1,0 +1,93 @@
+.card {
+    display: flex;
+    max-width: 20em;
+    flex-direction: column;
+    background-color: rgba(29, 29, 29, 0.911);
+    margin: 2em;
+    border-radius: 40% 10px 0 0;
+    box-shadow: 5px 5px 5px 5px rgba(235, 233, 233, 0.274);
+    opacity: 0.95;
+    font-size: 10px;
+}
+
+
+.card h2{
+/*     font-size: 20px; */
+    margin: 10px;
+    color: white;
+    font-weight: lighter;
+}
+
+span {
+    font-size: 20px;
+    font-weight:bolder;
+}
+
+.image {
+    position: relative;
+}
+.image button{
+    padding: 10px;
+    border: 0px;
+    border-top-right-radius: 7px;
+    border-bottom-left-radius:  20%;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    color: white;
+}
+
+button {
+    background-color: #d11f12;
+}
+
+.info {
+    position: relative;
+}
+
+
+.boton_detalles{
+    width: 100%;
+    margin: auto;
+    border-radius: 0 0 15px 15px;
+    padding: 10px 0;
+    position: absolute;
+    bottom: -35px;
+    right: 0%;
+    border: none;
+    background-color: #0a4aaa;
+}
+
+.boton_detalles:hover {
+    background-color: #063479;
+}
+
+
+button:hover{
+    cursor: pointer;
+    background-color: #770808;
+    color: white;
+}
+.image img {
+    border-radius: 40% 5% 0% 0%;
+    width: 100%;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+/* .card img {
+    border-radius: 15px 15px 0 0 ;
+}
+
+.button {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    top: 3em;
+    left: 3em;
+    
+} */
+
+

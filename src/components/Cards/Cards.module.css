@@ -1,0 +1,29 @@
+.cards {
+    margin: auto;
+    min-width: 100%;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    
+/*     display: flex;
+    flex-direction: row;
+    justify-content:first baseline;
+    flex-grow: initial;
+    flex-wrap: wrap;
+    align-items: flex-start; */
+    margin-top: 3rem;
+}
+
+@media screen and (max-width: 800px) {
+    .cards {
+        grid-template-columns: 50% 50%;
+    }
+}
+@media screen and (max-width: 650px) {
+    .cards {
+        grid-template-columns: 100%;
+    }
+}
+
+

@@ -1,0 +1,47 @@
+.contenedor {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    min-height: 1em;
+    opacity: 0.95;
+
+}
+.logo {
+    padding-left: 2em;
+    margin: 0;
+}
+
+.logo img{
+    height: 6em;
+}
+
+.contenido {
+    display: flex;
+    height: 2em;
+    justify-content: center;
+    align-items: center;
+    padding-right: 2em;
+    margin: auto 0;
+}
+
+
+.link {
+    background-color: #3164d3;
+    padding: 0px 7px;
+    margin: 0 5px;
+    text-decoration: none;
+    height: 1.5em;
+    color: white;
+    border: none;
+}
+
+@media screen and (max-width: 700px) {
+    .contenedor {
+        display: flex;
+        flex-direction: column;
+        padding: 2em 0;
+    }
+}
+
