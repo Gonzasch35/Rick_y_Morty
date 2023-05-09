@@ -9,8 +9,7 @@ const Form = ({login}) => {
         password: '',
     })
     const [errors, setErrors] = useState({
-        username: '',
-        password: '',
+        error: '',
     })
 
     const handleChange = event => {
@@ -18,7 +17,11 @@ const Form = ({login}) => {
         const value = event.target.value
         setUserData({...userData, [property]: value})
 
-        validation({...userData, [property]: value}, errors, setErrors)
+        if(property === 'username') {
+            validation({...userData, username: value}, errors, setErrors)
+        } else {
+            validation({...userData, password: value}, errors, setErrors)
+        }
     }
 
     const handleSubmit = (event) => {
@@ -26,33 +29,32 @@ const Form = ({login}) => {
         login(userData)
     }
 
-
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
         <>    
             <h2>Login de Ingreso</h2>
+            <h6 className={styles.errors}>{errors.error}</h6>
             <div>
-                <label htmlFor="username">Email</label>
-                <input 
+                <label htmlFor="username">Email *</label>
+                <input
                     type="text"
                     name='username' 
                     placeholder='--- Email ---'
                     value={userData.username}
                     onChange={handleChange}
                 />
-                <p>{errors.username}</p>
             </div>
 
             <div>
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Password *</label>
                 <input 
                     type="password" 
-                    name='password' 
+                    name='password'
                     placeholder='--- Password ---'
                     value={userData.password}
                     onChange={handleChange}
                 />
-                <h6 className={styles.errors}>{errors.password}</h6>
+                <h6>* Campos Obligatorios </h6>
             </div>
 
             <button>Login</button>

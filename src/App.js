@@ -5,10 +5,13 @@ import Nav from './components/Nav/Nav'
 import About from './components/About/About'
 import Detail from './components/Detail/Detail'
 import Form from './components/Form/Form'
+import Favorites from './components/Favorites/Favorites'
 import { Route, Routes, useLocation, useNavigate} from 'react-router-dom'
+import { connect} from 'react-redux'
+import { removeFavorite } from './redux/actions';
 
 
-function App () {
+function App ({removeFavorite}) {
 
   const [characters, setCharacters] = useState([])
   
@@ -67,6 +70,8 @@ function App () {
     setCharacters(
       characters.filter(char => char.id !== id)
     )
+    removeFavorite(id)
+  
   }
 
   //========================= Login =================================
@@ -114,6 +119,10 @@ function App () {
           element={<About />}
         />
         <Route 
+          path='/favorites'
+          element={<Favorites />}
+        />
+        <Route 
           path='/detail/:id'
           element={<Detail />}
         />
@@ -122,4 +131,12 @@ function App () {
   )
 }
 
-export default App
+
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+     removeFavorite: (id)=>{dispatch(removeFavorite(id))}
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App)
