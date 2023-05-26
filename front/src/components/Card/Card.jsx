@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 
 
- const Card = ({name, species, gender, image, onClose, id, myFavorites, addFavorite, removeFavorite}) => {
+ const Card = ({name, species, gender, status, image, onClose, id, myFavorites, addFavorite, removeFavorite}) => {
 
    const [isFav, setIsFav] = useState(false)
 
@@ -25,11 +25,9 @@ import { useEffect, useState } from 'react';
          removeFavorite(id)
       } else {
          setIsFav(true)
-         addFavorite({name, species, gender, image, onClose, id, myFavorites, addFavorite, removeFavorite})
+         addFavorite({name, species, gender, status, image, onClose, id, myFavorites, addFavorite, removeFavorite})
     }
    }
-
-
    return (
       <div className={styles.card}>
          <div className={styles.image}>

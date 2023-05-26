@@ -8,15 +8,21 @@ export const ORDER = 'ORDER'
 
 export const addFavorite = (character) => {
     const endpoint = 'http://localhost:3001/rickandmorty/fav';
-    return (dispatch) => {
-       axios.post(endpoint, character).then(({ data }) => {
-          return dispatch({
-             type: 'ADD_FAVORITE',
-             payload: data,
-          });
-       });
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.post(endpoint, character)
+
+            if(!data.length) throw Error('No hay favoritos')
+
+            return dispatch({
+               type: 'ADD_FAVORITE',
+               payload: data,
+            });
+        } catch (error) {
+            console.log(error.message);
+        }
+       };
     };
- };
 
 /* export const addFavorite = (character) => {
     return{
@@ -26,14 +32,19 @@ export const addFavorite = (character) => {
 } */
 
 export const removeFavorite = (id) => {
-    const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id;
-    return (dispatch) => {
-       axios.delete(endpoint).then(({ data }) => {
-          return dispatch({
-             type: 'REMOVE_FAVORITE',
-             payload: data,
-       });
-       });
+    const endpoint = `http://localhost:3001/rickandmorty/fav/${id}`;
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.delete(endpoint)
+
+
+               return dispatch({
+                  type: 'REMOVE_FAVORITE',
+                  payload: data,
+            });
+        } catch (error) {
+            console.log(error.message);
+        }
     };
  };
 

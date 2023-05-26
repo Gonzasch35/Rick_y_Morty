@@ -18,7 +18,7 @@ function App ({removeFavorite}) {
   
   const navigate = useNavigate()
   const [access, setAccess] = useState(false)
-/*   const username = 'correo@correo.com'
+ /* const username = 'correo@correo.com'
   const password = 'pass123' */
 
   
@@ -27,41 +27,30 @@ function App ({removeFavorite}) {
 
 
   useEffect(() => {
-/*     if(localStorage.getItem('name') === username) {
-      navigate('/home')
-    } else */ navigate('/home')
+/*      if(localStorage.getItem('name') === username) {
+      navigate('/home') */
+   access && navigate('/home')
     // eslint-disable-next-line
   }, [access])
 
 
   //=====================   onSearch   ==============================
-  const onSearch = (id) => {
+  const onSearch = async (id) => {
 
-/*     const URL_BASE = 'https://be-a-rym.up.railway.app/api' */
     const URL_BASE = 'http://localhost:3001/rickandmorty'
-/*     const KEY = '514202f34f23.3315146edc770c0ffe5b' */
-
-/*     https://rickandmortyapi.com/api/character/$%7Bid%7D */
-/*     fetch(`${URL_BASE}/character/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-         if (data.name && !characters.find((char) => char.id === data.id)) {
-            setCharacters((oldChars) => [...oldChars, data]);
-         } else {
-            window.alert('No hay personajes con ese ID');
-         }
-      }) */
-      fetch(`${URL_BASE}/character/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
+    try {
+      const response = await fetch(`${URL_BASE}/character/${id}`)
+      const data = await response.json()
          if (data.name) {
           if (!characters.find((char) => char.id === data.id)) {
-            setCharacters((oldChars) => [...oldChars, data])}
-            else {window.alert('El personaje ya exite') }
-         } else {
-            window.alert('No hay personajes con ese ID');
-         }
-      })
+            setCharacters((oldChars) => [...oldChars, data])
+          } else throw Error('El personaje ya exite')
+         }else {
+            throw Error('No hay personajes con ese ID');
+         }     
+    } catch (error) {
+      window.alert(error)
+    }
   }
 
   //============================   onClose   ==========================================
@@ -77,15 +66,22 @@ function App ({removeFavorite}) {
 
   //========================= Login =================================
 
-  function login(userData) {
-    const { username, password } = userData;
-    const URL = 'http://localhost:3001/rickandmorty/login/';
-    axios(URL + `?email=${username}&password=${password}`).then(({ data }) => {
-       const { access } = data;
-       setAccess(data);
-       access && navigate('/home');
-    });
- }
+  async function login(userData) {
+    try {
+      const { username, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      const {data} = await axios(URL + `?email=${username}&password=${password}`)
+         const { access } = data;
+         setAccess(data);
+          if(access === true) {
+           navigate('/home');
+          } else {
+           throw Error('Usuario incorrecto')
+          }   
+    } catch (error) {
+      window.alert(error.message)
+    }
+  } 
 
 
   /* const login = (userData) => {

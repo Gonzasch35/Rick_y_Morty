@@ -35,11 +35,11 @@ const Favorites = ({myFavorites}) => {
       {myFavorites.map((favorite) => {
         return(
           <div key={favorite.id} className={styles.card}>
+              <img src={favorite.image} alt="imagee" />
               <h2>{favorite.name}</h2>
               <h2>{favorite.species}</h2>
               <h2>{favorite.status}</h2>
               <h2>{favorite.gender}</h2>
-              <img src={favorite.image} alt="imagee" />
           </div>
         ) 
       })}
@@ -50,7 +50,7 @@ const Favorites = ({myFavorites}) => {
 
 const mapStateToProps = (state) => {
     return {
-       myFavorites: state.myFavorites 
+       myFavorites: state.myFavorites
     }
 }
 

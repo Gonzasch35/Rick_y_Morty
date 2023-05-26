@@ -38,7 +38,6 @@ const Detail = () => {
                 <h3>{character.gender}</h3>
                 <h3>{character.status === "unknown" ? 'Desconocido' : character.status}</h3>
                 <h3>{character.type}</h3>
-
             </div>
                 <button><Link className={styles.link} to='/home'>Ir a Home</Link></button>
         </div>
